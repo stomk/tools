@@ -6,6 +6,7 @@ import argparse
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     description='Prints histgram in text format')
 parser.add_argument('-s', '--step', dest='step_size', type=int, default=1, help='')
+parser.add_argument('-r', '--reverse', action='store_true', help='print in descending order')
 
 args = parser.parse_args()
 
@@ -37,7 +38,7 @@ for val in vals:
     freq[step] = freq[step] + 1
 
 max_count = max(freq.values())
-for step, count in sorted(freq.items(), key=lambda x: x[0]):
+for step, count in sorted(freq.items(), key=lambda x: x[0], reverse=args.reverse):
     print '%5d (%4d) %s' % (step, count, stars(count, max_count))
              
             
