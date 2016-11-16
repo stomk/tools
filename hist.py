@@ -18,7 +18,7 @@ def ceiling(val, step_size):
     return step_size * (int(val) / step_size + 1)
 
 def stars(count, max_count):
-    return '*' * (50 * count / max_count)
+    return '*' * count if max_count <= 50 else '*' * (50 * count / max_count)
 
 
 vals = map(lambda x: float(x.strip()), sys.stdin.readlines())
