@@ -5,7 +5,7 @@ import argparse
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     description='Prints histgram in text format')
-parser.add_argument('-s', '--step_size', type=int, default=1, help='')
+parser.add_argument('-s', '--step', dest='step_size', type=int, default=1, help='')
 
 args = parser.parse_args()
 
