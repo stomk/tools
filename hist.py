@@ -4,7 +4,7 @@ import sys
 import argparse
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-    description='Prints histgram in text format')
+    description='Print histgram in ASCII')
 parser.add_argument('-s', '--step', dest='step_size', type=int, default=1, help='')
 parser.add_argument('-r', '--reverse', action='store_true', help='print in descending order')
 
