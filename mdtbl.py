@@ -2,9 +2,11 @@
 
 import sys
 import argparse
+import re
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     description='Format for markdown table')
+parser.add_argument('-u', '--unformat', action='store_true', help='unformat markdown table with specified delimiter (-d, default: tab)')
 parser.add_argument('-d', '--delimiter', dest='delim', default=None, help='specify input delimiter')
 parser.add_argument('-H', '--header', action='store_true', help='treat first line as header')
 parser.add_argument('-a', '--align', help='specify alignment of the columns (use with -H option). e.g. -a lcr')
@@ -17,6 +19,15 @@ def join_by_bar(items):
 
 def format(line):
     return join_by_bar(line.strip().split(args.delim))
+
+def replace_bar_with_delim(line, delim):
+    line = re.sub('\A\|\s*', '', line)
+    line = re.sub('\s*\|\Z', '', line)
+    line = re.sub('\s*\|\s*', delim, line)
+    return line
+
+def unformat(line, delim):
+    return replace_bar_with_delim(line.strip(), delim)
 
 def replace_align_char(c):
     if c == 'l':
@@ -42,12 +53,18 @@ def num_field(line):
     return len(line.split(args.delim))
 
 
-if args.header:
-    line = sys.stdin.readline()
-    header_line = header_line(num_field(line))
-    print format(line)
-    print header_line
-
-for line in sys.stdin.readlines():
-    print format(line)
-
+if args.unformat:
+    delim = args.delim if args.delim else '\t'
+    if args.header:
+        print unformat(sys.stdin.readline(), delim)
+        sys.stdin.readline()  # skip header line
+    for line in sys.stdin.readlines():
+        print unformat(line, delim)
+else:
+    if args.header:
+        line = sys.stdin.readline()
+        header_line = header_line(num_field(line))
+        print format(line)
+        print header_line
+    for line in sys.stdin.readlines():
+        print format(line)
