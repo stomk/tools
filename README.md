@@ -1,5 +1,22 @@
 # tools
-UNIX-like command line tools
+UNIX-like command-line tools
+
+## Installation
+```sh
+$ ./setup.sh -d /path/to/install/directory/
+```
+
+To install bash functions,
+
+```sh
+$ cp bash_functions.sh ~/.bash_functions
+```
+
+Then write this line in your ~/.bash_profile
+```
+# Load bash functions
+. ~/.bash_functions
+```
 
 ## Table of contents
 
