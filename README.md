@@ -3,7 +3,7 @@ UNIX-like command-line tools
 
 ## Installation
 ```sh
-$ ./setup.sh -d /path/to/install/directory/
+$ ./setup.sh -d /path/to/install/directory
 ```
 
 To install bash functions,
