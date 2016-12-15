@@ -3,6 +3,10 @@
 import sys
 import argparse
 
+## To avoid getting "IOError: [Errno 32] Broken pipe" upon piping the output
+from signal import signal, SIGPIPE, SIG_DFL
+signal(SIGPIPE, SIG_DFL)
+
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     description='Force align columns')
 parser.add_argument('-d', '--delimiter', dest='delim', default='\t', help='specify input delimiter')

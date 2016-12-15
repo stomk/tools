@@ -3,6 +3,10 @@
 import sys
 import argparse
 
+## To avoid getting "IOError: [Errno 32] Broken pipe" upon piping the output
+from signal import signal, SIGPIPE, SIG_DFL
+signal(SIGPIPE, SIG_DFL)
+
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     description='Print histgram in ASCII')
 parser.add_argument('-s', '--step', dest='step_size', type=int, default=1, help='')
