@@ -24,6 +24,7 @@ Then write this line in your ~/.bash_profile
 | --- | --- |
 | md | mkdir && cd |
 | summ | Sum up |
+| gac | Group and count |
 | mdtbl | Format for markdown table |
 | textbl | Format for latex table |
 | faln | Force align columns |
